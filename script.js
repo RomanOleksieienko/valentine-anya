@@ -19,13 +19,14 @@ const questionSection = document.getElementById("question-section");
 const successSection = document.getElementById("success-section");
 const mainGif = document.getElementById("main-gif");
 
-// Images configuration
+// Images configuration (ImgBB URLs)
 const images = [
-    "couple_heart.jpg",   // 0: Initial
-    "boy_hamster.png",    // 1: Click 1 (Hamster)
-    "boy_crying.png",     // 2: Click 2 (Crying)
-    "boy_kneeling.png",   // 3: Click 3 (Kneeling)
-    "boy_puddle.png"      // 4: Click 4 (Puddle)
+    "https://i.ibb.co/nNYLbvvW/couple-heart.png",      // 0: Initial
+    "https://i.ibb.co/JRJXckqK/2clickno.png",          // 1: Click 1
+    "https://i.ibb.co/PswPvfYm/2second-click-no.png",  // 2: Click 2
+    "https://i.ibb.co/TD7GndFp/3click-no.png",         // 3: Click 3
+    "https://i.ibb.co/k2bK7pb6/4-click-no.png",        // 4: Click 4
+    "https://i.ibb.co/pr57RLPN/5click-no.png"          // 5: Click 5 (Final)
 ];
 
 noBtn.addEventListener("click", () => {
@@ -36,8 +37,8 @@ noBtn.addEventListener("click", () => {
         mainGif.src = images[noCount];
     }
 
-    // Special case for final stage (Puddle)
-    if (noCount >= 4) {
+    // Special case for final stage (5th click)
+    if (noCount >= 5) {
         noBtn.classList.add("hidden"); // Hide No button
         yesBtn.style.fontSize = "3rem"; // Make Yes button huge
         yesBtn.style.width = "100%";
@@ -52,7 +53,7 @@ noBtn.addEventListener("click", () => {
     }
 
     // Grow Yes button (until final stage logic takes over)
-    if (noCount < 4) {
+    if (noCount < 5) {
         const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
         const currentPadding = parseFloat(window.getComputedStyle(yesBtn).paddingTop);
 
@@ -66,23 +67,16 @@ yesBtn.addEventListener("click", () => {
     successSection.classList.remove("hidden");
     createConfetti();
 
-    // Success Slideshow
-    let toggle = false;
-    setInterval(() => {
-        const couplePhoto = document.querySelector(".couple-photo");
-        if (toggle) {
-            couplePhoto.src = "couple_kiss.png";
-        } else {
-            couplePhoto.src = "couple_heart.png";
-        }
-        toggle = !toggle;
-    }, 3000); // Swap every 3 seconds
+    // Set success image
+    const couplePhoto = document.querySelector(".couple-photo");
+    // Updated to use the specific success image provided by user
+    couplePhoto.src = "https://i.ibb.co/SwPqj3WX/clickyes.png";
 });
 
 // Create floating hearts background
 function createHearts() {
     const heartsContainer = document.querySelector(".hearts-container");
-    const heartCount = 40; // Increased from 20 to 40 for more density
+    const heartCount = 40;
 
     for (let i = 0; i < heartCount; i++) {
         setTimeout(() => {
@@ -102,7 +96,7 @@ function createHearts() {
                 // Replace with new one to keep flow infinite/dense enough
                 createSingleHeart();
             });
-        }, i * 150); // Faster generation interval
+        }, i * 150);
     }
 }
 
@@ -122,7 +116,7 @@ function createSingleHeart() {
 
 // Simple JS Confetti function for the Yes click
 function createConfetti() {
-    for (let i = 0; i < 80; i++) { // More confetti!
+    for (let i = 0; i < 80; i++) {
         setTimeout(() => {
             createSingleHeart();
         }, i * 10);
