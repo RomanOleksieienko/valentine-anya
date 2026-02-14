@@ -21,7 +21,7 @@ const mainGif = document.getElementById("main-gif");
 
 // Images configuration
 const images = [
-    "couple_heart.png",   // 0: Initial
+    "couple_heart.jpg",   // 0: Initial
     "boy_hamster.png",    // 1: Click 1 (Hamster)
     "boy_crying.png",     // 2: Click 2 (Crying)
     "boy_kneeling.png",   // 3: Click 3 (Kneeling)
