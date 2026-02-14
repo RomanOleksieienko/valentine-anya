@@ -136,3 +136,27 @@ body {
     margin-top: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .container {
+        padding: 1.5rem;
+        width: 85%;
+    }
+
+    .title {
+        font-size: 1.8rem;
+        /* Smaller font for mobile */
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .cat-gif {
+        height: auto;
+        /* Ensure aspect ratio */
+        max-width: 100%;
+    }
+}
