@@ -1,15 +1,19 @@
 const phrases = [
-    "Нет",
+    "Бусик, будешь моей валентинкой? 🌹",
     "Котик, ты точно уверена?",
     "Ну пожалуйста...",
     "Сердце трескается...",
     "Ну всё, я плачу...",
     "Бусик, ну перестань!",
-    "Я щас умру от грусти!",
-    "Нажми уже ДА!",
-    "Я не отстану...",
-    "Люблю тебя! (Нажми ДА)"
+    "Я щас умру от грусти!"
 ];
+
+// Note: phrases[0] is initial, 
+// click 1 -> phrases[1]
+// click 2 -> phrases[2]
+// click 3 -> phrases[3]
+// click 4 -> phrases[4]
+// click 5 -> phrases[5] ("Я щас умру от грусти!") -> Final state
 
 let noCount = 0;
 
@@ -18,6 +22,7 @@ const yesBtn = document.getElementById("yes-btn");
 const questionSection = document.getElementById("question-section");
 const successSection = document.getElementById("success-section");
 const mainGif = document.getElementById("main-gif");
+const titleElement = document.querySelector(".title");
 
 // Images configuration (ImgBB URLs)
 const images = [
@@ -37,19 +42,21 @@ noBtn.addEventListener("click", () => {
         mainGif.src = images[noCount];
     }
 
+    // Change Title Text
+    // We start from index 1 because index 0 is the initial title
+    if (noCount < phrases.length) {
+        titleElement.innerText = phrases[noCount];
+    } else {
+        titleElement.innerText = phrases[phrases.length - 1]; // Keep final
+    }
+
     // Special case for final stage (5th click)
+    // 5th click corresponds to images[5] (5click-no) and phrases[5] ("Я щас умру от грусти!")
     if (noCount >= 5) {
         noBtn.classList.add("hidden"); // Hide No button
         yesBtn.style.fontSize = "3rem"; // Make Yes button huge
         yesBtn.style.width = "100%";
         noBtn.style.display = "none"; // Ensure it's gone
-    }
-
-    // Change text
-    if (noCount < phrases.length) {
-        noBtn.innerText = phrases[noCount];
-    } else {
-        noBtn.innerText = phrases[phrases.length - 1];
     }
 
     // Grow Yes button (until final stage logic takes over)
@@ -69,7 +76,6 @@ yesBtn.addEventListener("click", () => {
 
     // Set success image
     const couplePhoto = document.querySelector(".couple-photo");
-    // Updated to use the specific success image provided by user
     couplePhoto.src = "https://i.ibb.co/SwPqj3WX/clickyes.png";
 });
 
@@ -93,7 +99,6 @@ function createHearts() {
             // Cleanup after animation
             heart.addEventListener('animationend', () => {
                 heart.remove();
-                // Replace with new one to keep flow infinite/dense enough
                 createSingleHeart();
             });
         }, i * 150);
