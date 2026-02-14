@@ -1,0 +1,135 @@
+:root {
+    --bg-color: #ffe6e9; /* Soft pink background */
+    --heart-color: #ff4d6d;
+    --text-color: #590d22;
+    --btn-yes-bg: #2ecc71;
+    --btn-no-bg: #e74c3c;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--bg-color);
+    overflow: hidden; /* Prevent scrollbars from flying hearts */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    text-align: center;
+    z-index: 10;
+    position: relative;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    max-width: 90%;
+    width: 500px;
+}
+
+.title {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+.gif-container {
+    margin-bottom: 2rem;
+}
+
+.cat-gif {
+    max-width: 100%;
+    height: 200px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Allow wrapping if buttons get huge */
+    align-items: center;
+}
+
+.btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+}
+
+.btn-yes {
+    background-color: var(--btn-yes-bg);
+    color: white;
+}
+
+.btn-no {
+    background-color: var(--btn-no-bg);
+    color: white;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none;
+}
+
+/* 8-bit Hearts Animation */
+.hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    bottom: -50px;
+    background-color: var(--heart-color);
+    width: 20px;
+    height: 20px;
+    /* 8-bit heart shape using box-shadow (simplified) or clip-path */
+    clip-path: polygon(
+        15% 0%, 30% 0%, 45% 15%, 
+        60% 0%, 75% 0%, 90% 15%, 
+        100% 30%, 100% 50%, 85% 70%, 
+        50% 100%, 15% 70%, 0% 50%, 
+        0% 30%, 10% 15%
+    );
+    animation: floatUp linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.couple-photo {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
