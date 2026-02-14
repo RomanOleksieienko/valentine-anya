@@ -130,3 +130,4 @@ function createConfetti() {
 
 // Initialize background hearts
 createHearts();
+// Mobile responsiveness verified
