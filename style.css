@@ -1,5 +1,6 @@
 :root {
-    --bg-color: #ffe6e9; /* Soft pink background */
+    --bg-color: #ffe6e9;
+    /* Soft pink background */
     --heart-color: #ff4d6d;
     --text-color: #590d22;
     --btn-yes-bg: #2ecc71;
@@ -11,7 +12,8 @@ body {
     padding: 0;
     font-family: 'Nunito', sans-serif;
     background-color: var(--bg-color);
-    overflow: hidden; /* Prevent scrollbars from flying hearts */
+    overflow: hidden;
+    /* Prevent scrollbars from flying hearts */
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -26,7 +28,7 @@ body {
     background: rgba(255, 255, 255, 0.8);
     padding: 2rem;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     max-width: 90%;
     width: 500px;
 }
@@ -42,17 +44,19 @@ body {
 }
 
 .cat-gif {
-    max-width: 100%;
-    height: 200px;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
     border-radius: 15px;
-    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .buttons {
     display: flex;
     justify-content: center;
     gap: 20px;
-    flex-wrap: wrap; /* Allow wrapping if buttons get huge */
+    flex-wrap: wrap;
+    /* Allow wrapping if buttons get huge */
     align-items: center;
 }
 
@@ -104,13 +108,11 @@ body {
     width: 20px;
     height: 20px;
     /* 8-bit heart shape using box-shadow (simplified) or clip-path */
-    clip-path: polygon(
-        15% 0%, 30% 0%, 45% 15%, 
-        60% 0%, 75% 0%, 90% 15%, 
-        100% 30%, 100% 50%, 85% 70%, 
-        50% 100%, 15% 70%, 0% 50%, 
-        0% 30%, 10% 15%
-    );
+    clip-path: polygon(15% 0%, 30% 0%, 45% 15%,
+            60% 0%, 75% 0%, 90% 15%,
+            100% 30%, 100% 50%, 85% 70%,
+            50% 100%, 15% 70%, 0% 50%,
+            0% 30%, 10% 15%);
     animation: floatUp linear infinite;
     opacity: 0.7;
 }
@@ -120,6 +122,7 @@ body {
         transform: translateY(0) rotate(0deg);
         opacity: 0.8;
     }
+
     100% {
         transform: translateY(-110vh) rotate(360deg);
         opacity: 0;
@@ -131,5 +134,5 @@ body {
     max-width: 300px;
     border-radius: 15px;
     margin-top: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
