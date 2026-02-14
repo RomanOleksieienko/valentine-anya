@@ -131,3 +131,4 @@ function createConfetti() {
 // Initialize background hearts
 createHearts();
 // Mobile responsiveness verified
+// Redeploy timestamp: Sat Feb 14 15:16:09 CET 2026
