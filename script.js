@@ -21,23 +21,27 @@ const mainGif = document.getElementById("main-gif");
 
 // Images configuration
 const images = [
-    "couple_heart.png", // 0: Initial
-    "boy_hamster.png",  // 1: Click 1 (Hamster meme)
-    "boy_crying.png",   // 2: Click 2 (Crying)
-    "heart_crack.png"   // 3: Click 3 (Crack)
+    "couple_heart.png",   // 0: Initial
+    "boy_hamster.png",    // 1: Click 1 (Hamster)
+    "boy_crying.png",     // 2: Click 2 (Crying)
+    "boy_kneeling.png",   // 3: Click 3 (Kneeling)
+    "boy_puddle.png"      // 4: Click 4 (Puddle)
 ];
 
 noBtn.addEventListener("click", () => {
     noCount++;
 
     // Change image based on clicks
-    if (noCount === 1) {
-        mainGif.src = images[1]; // Hamster
-    } else if (noCount === 2) {
-        mainGif.src = images[2]; // Crying
-    } else if (noCount >= 3) {
-        mainGif.src = images[3]; // Crack (stays cracked or cycle?)
-        // Let's keep it cracked to be dramatic
+    if (noCount < images.length) {
+        mainGif.src = images[noCount];
+    }
+
+    // Special case for final stage (Puddle)
+    if (noCount >= 4) {
+        noBtn.classList.add("hidden"); // Hide No button
+        yesBtn.style.fontSize = "3rem"; // Make Yes button huge
+        yesBtn.style.width = "100%";
+        noBtn.style.display = "none"; // Ensure it's gone
     }
 
     // Change text
@@ -47,18 +51,32 @@ noBtn.addEventListener("click", () => {
         noBtn.innerText = phrases[phrases.length - 1];
     }
 
-    // Grow Yes button
-    const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-    const currentPadding = parseFloat(window.getComputedStyle(yesBtn).paddingTop);
+    // Grow Yes button (until final stage logic takes over)
+    if (noCount < 4) {
+        const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+        const currentPadding = parseFloat(window.getComputedStyle(yesBtn).paddingTop);
 
-    yesBtn.style.fontSize = `${currentSize * 1.4}px`;
-    yesBtn.style.padding = `${currentPadding * 1.2}px ${currentPadding * 2}px`; // Increase padding too
+        yesBtn.style.fontSize = `${currentSize * 1.4}px`;
+        yesBtn.style.padding = `${currentPadding * 1.2}px ${currentPadding * 2}px`;
+    }
 });
 
 yesBtn.addEventListener("click", () => {
     questionSection.classList.add("hidden");
     successSection.classList.remove("hidden");
     createConfetti();
+
+    // Success Slideshow
+    let toggle = false;
+    setInterval(() => {
+        const couplePhoto = document.querySelector(".couple-photo");
+        if (toggle) {
+            couplePhoto.src = "couple_kiss.png";
+        } else {
+            couplePhoto.src = "couple_heart.png";
+        }
+        toggle = !toggle;
+    }, 3000); // Swap every 3 seconds
 });
 
 // Create floating hearts background
